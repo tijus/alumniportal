@@ -25,11 +25,15 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js',
+        'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
         'http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js',
         'js/datatables.js',
         'js/scripts.js',
         'js/super-treadmill.js',
         'js/super-treadmill.min.js',
+        'js/message_form.js',
+        'js/imageloader.js',
+        'js/resumemodal.js'
 
     ];
     public $depends = [

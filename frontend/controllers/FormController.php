@@ -101,30 +101,32 @@ ON work_experience.work_exp_id = user.id where user.id=".Yii::$app->user->getId(
     }
     public function actionBasicInfo()
     {   
-
-            
-
-
             $model = new BasicInfo();
-
-            if ($model->load(Yii::$app->request->post()) ) {
-                $imageName=$model->first_name;
-            $model->file=UploadedFile::getInstance($model,'file');
-            $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);
-
-            //save the path
-            $model->profile_pic_path='uploads/'.$imageName.'.'.$model->file->extension;
             $model->basic_info_id = Yii::$app->user->getId();
             $model->first_login_date=date_create()->format('Y-m-d M:1:m');
             $model->last_profile_update_date=date_create()->format('Y-m-d M:1:m');
-            $model->save();
+
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+                
+                /*$imageName=$model->first_name;
+            $model->file=UploadedFile::getInstance($model,'file');
+                        if ($model->file && $model->validate()) {                
+            $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);
+            $model->profile_pic_path='uploads/'.$imageName.'.'.$model->file->extension;
+        }*/
+
+            //save the path
+            
+            
+            
                 return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=form-sync/index',302);
             } else {
                 return $this->render('basicinfo', [
                     'model' => $model,
                 ]);
-            }
-        
+            }        
     }
     public function actionViewProfile()
     {
@@ -285,7 +287,7 @@ ON work_experience.work_exp_id = user.id where user.id=".Yii::$app->user->getId(
          $model->work_exp_id=Yii::$app->user->getId();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=form-sync/index',302);
+            return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=form/memebers-area',302);
         } else {
             return $this->render('workexperience', [
                 'model' => $model,
@@ -295,29 +297,14 @@ ON work_experience.work_exp_id = user.id where user.id=".Yii::$app->user->getId(
     }
     public function actionProfilePics()
     {
-        $model = new ProfilePics();
-        $model->profile_pic_id=Yii::$app->user->getId();
-        if($model->load(Yii::$app->request->post())){
-    $model->file = UploadedFile::getInstance($model, 'file');
-    $save_file = '';
-    if($model->file){
-        $imagepath = 'uploads/profilepics/'; // Create folder under web/uploads/logo
-        $model->image_path = $imagepath .rand(10,100).'-'.$model->file->name;
-        $save_file = 1;
-                }
-     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-         if($save_file){
-                $model->file->saveAs($model->image_path);
-            }
-            return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=form-sync/index',302);
-        } else {
-            return $this->render('profilepics', [
-                'model' => $model,
-            ]);
-    
-        }
+            Yii::$app->controller->enableCsrfValidation = false;
+        return $this->render('profile-pics');
     }
-}}
+    public function actionProcessImage()
+    {
+        return $this->render('process-image');
+    }
+}
    /*public function actionPdf() {
 $connection = Yii::$app->db;
 $query = new Query;

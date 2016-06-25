@@ -35,7 +35,7 @@ class WorkExperience extends \yii\db\ActiveRecord
             [['company_name'], 'string', 'max' => 30],
             [['job_title'], 'string', 'max' => 25],
             //[['start_date', 'end_date'], 'string', 'max' => 10]
-             [['start_date'],'date', 'format'=>'dd-mm-yyyy','message'=>'Date should be of the format dd-mm-yyyy']
+             
         ];
         
     }
@@ -50,7 +50,7 @@ class WorkExperience extends \yii\db\ActiveRecord
             'type' => 'Mention your Experience type',
             'company_name' => 'Name of your current company',
             'job_title' => 'Job Title',
-            'start_date' => 'Date of joining',
+            
             
         ];
     }

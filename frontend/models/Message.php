@@ -28,8 +28,10 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['message_id', 'message_contents', 'username', 'date_time'], 'required'],
-            [['message_id'], 'integer'],
+            [['discussion_id','message_creater_id','message_contents', 'username', 'date_time'], 'required'],
+            [['discussion_id'], 'integer'],
+            [['message_creater_id'],'integer'],
+            [['id'],'integer'],
             [['message_contents'], 'string', 'max' => 255],
             [['username'], 'string', 'max' => 40],
             [['date_time'], 'string', 'max' => 20]
@@ -42,7 +44,10 @@ class Message extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'message_id' => 'Message ID',
+            'id'=>'ID',
+            'discussion_id' => 'Message ID',
+            'message_creater_id'=>'Message Creater Id',
+            //'discussion_id'=>'Discussion ID',
             'message_contents' => '',
             'username' => 'Username',
             'date_time' => 'Date Time',

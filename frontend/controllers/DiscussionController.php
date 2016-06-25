@@ -6,10 +6,14 @@ use Yii;
 use frontend\models\Discussion;
 use frontend\models\DiscussionSearch;
 use frontend\models\Message;
+use frontend\models\Reply;
 //use frontend\models\MessageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
+use yii\db\Connection;
+use yii\db\Exception;
 
 /**
  * DiscussionController implements the CRUD actions for Discussion model.
@@ -61,6 +65,21 @@ class DiscussionController extends Controller
      * @param integer $id
      * @return mixed
      */
+
+    /*
+    *Delete message
+    *GET method used
+    *The values will have trash info so extract from that. 
+    */
+
+    public function actionDeleteMessage()
+    {
+        $d_id=$_GET['d_id'];
+        $m_id=$_GET['m_id'];
+        $this->findModelMessage($m_id)->delete();
+
+        return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=discussion/create-message&id='.$d_id);
+    }
     public function actionView($id)
     {
         return $this->render('view', [
@@ -68,7 +87,7 @@ class DiscussionController extends Controller
         ]);
     }
 
-    /**
+    /**xattr_get(filename, name)
      * Creates a new Discussion model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -77,6 +96,7 @@ class DiscussionController extends Controller
     {
         $model = new Discussion();
 
+        $model->created_by=Yii::$app->user->getId();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=discussion/index');
         } else {
@@ -91,8 +111,9 @@ class DiscussionController extends Controller
         $model = new Message();
         $var = $this->findModel($id);
         
-        $model->message_id=$var->discussion_id;
+        $model->discussion_id=$var->discussion_id;
         $model->username=Yii::$app->user->identity->username;
+        $model->message_creater_id=Yii::$app->user->getId();
         $model->date_time=date("d-m-y");
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -133,7 +154,11 @@ class DiscussionController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        $sql = "DELETE FROM message WHERE discussion_id=:id";
+        $connection = \Yii::$app->db;
+        $command = $connection->createCommand($sql);
+        $command->bindValue(':id',$id);
+        $command->execute();
         return $this->redirect(['index']);
     }
 
@@ -160,5 +185,42 @@ class DiscussionController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionEditMessage()
+    {         
+        $d_id=$_GET['d_id'];
+        $m_id=$_GET['m_id'];
+       //$model->message_contents=$_POST['message_contents']
+        $message=$_POST['message_contents'];
+        $connection = \Yii::$app->db;
+       
+        $sql = "UPDATE message SET message_contents='$message' WHERE id=:id";
+
+        $command = $connection->createCommand($sql);
+        $command->bindValue(':id',$m_id);
+        $command->execute();
+
+        
+        return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=discussion/create-message&id='.$d_id);
+    }
+
+    
+    public function actionReplyMessage($id)
+    {   
+       $model=new Reply();
+       $username=Yii::$app->user->identity->username;
+       $date=date("d-m-y");
+       $d_id=$_GET['id'];
+       $m_id=$_GET['m_id'];
+       $message=$_POST['reply_contents'];
+       $connection = \Yii::$app->db;
+       $sql="INSERT INTO reply(discussion_id,message_id,username,reply_contents,date_time) VALUES ('$d_id','$m_id','$username','$message','$date')";
+       $command = $connection->createCommand($sql);
+       $command->execute();
+         
+
+       return $this->redirect(Yii::$app->request->baseUrl.'/index.php?r=discussion/create-message&id='.$d_id);  
+      
     }
 }

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
+//use yii\jui\DatePicker;
 
 
 /* @var $this yii\web\View */
@@ -33,7 +34,7 @@ use dosamigos\datepicker\DatePicker;
                     // inline too, not bad
                     'inline' => false, 
                     // modify template for custom rendering
-                    //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                    //template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
                     'clientOptions' => 
                         [
                             'autoclose' => false,
@@ -42,6 +43,7 @@ use dosamigos\datepicker\DatePicker;
                 ]
         );
     ?>
+  
  
     
     <?= $form->field($model, 'gender')->radioList(array('M'=>'Male','F'=>'Female')); ?>
@@ -54,17 +56,17 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'permanent_address')->textArea(['maxlength' => 100]) ?>
 
-    <?= $form->field($model, 'batch')->textInput(['maxlength' => 25]) ?>
+    <?= $form->field($model, 'batch')->dropDownList([''=>'Select', '2005'=>'2005', '2006'=>'2006', '2007'=>'2007', '2008'=>'2008', '2009'=>'2009', '2010'=>'2010', '2011'=>'2011', '2012'=>'2012', '2013'=>'2013', '2014'=>'2014', '2015'=>'2015', '2016'=>'2016', '2017'=>'2017', '2018'=>'2018', '2019'=>'2019', '2020'=>'2020']); ?>
 
-    <?= $form->field($model, 'file')->fileInput() ?>
+   
     
     <?= $form->field($model, 'website')->textInput(['maxlength' => 40]) ?>
 
     <?= $form->field($model, 'hobbies')->textInput(['maxlength' => 50]) ?>
 
-    <?= $form->field($model, 'marital_status')->dropDownList(['N'=>'Select','Single'=>'Single', 'Engaged'=>'Engaged','Married'=>'Married', 'Divorced'=>'Divorced','Widowed'=>'Widowed']); ?>
     
-    <?= $form->field($model, 'status')->dropDownList(['N' => 'Select', 'Alumni' => 'Alumni', 'Student' => 'Student']); ?>
+    
+    <?= $form->field($model, 'status')->dropDownList(['' => 'Select', 'Alumni' => 'Alumni', 'Student' => 'Student']); ?>
     
     <div class="form-group">
         <?= Html::submitButton('Next' , ['class' => 'btn btn-success' ]) ?>
@@ -99,7 +101,7 @@ else
 
     <?= $form->field($model, 'hobbies')->textInput(['maxlength' => 50]) ?>
 
-    <?= $form->field($model, 'marital_status')->dropDownList(['N'=>'Select','Single'=>'Single', 'Engaged'=>'Engaged','Married'=>'Married', 'Divorced'=>'Divorced','Widowed'=>'Widowed']); ?>
+    
     
     <?= $form->field($model, 'status')->dropDownList(['N' => 'Select', 'Alumni' => 'Alumni', 'Student' => 'Student']); ?>
     

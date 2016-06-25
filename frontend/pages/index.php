@@ -40,9 +40,7 @@
                     <li>
                         <a class="page-scroll" href="#one">Activities</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#two">Highlights</a>
-                    </li>
+                    
                     <li>
                         <a class="page-scroll" href="#three">Gallery</a>
                     </li>
@@ -63,10 +61,10 @@
     <header id="first">
         <div class="header-content">
             <div class="inner">
-                <h1 class="cursive">Simple, One Page Design</h1>
-                <h4>A free landing page theme with video background</h4>
+                <h1 class="cursive">Welcome to Alumni Portal</h1>
+                
                 <hr>
-                <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">Toggle Video</a> &nbsp; <a href="/portal/frontend/web/index.php?r=form/members-area" class="btn btn-primary btn-xl page-scroll">Get Started with portal</a>
+                 <a href="/portal/frontend/web/index.php?r=form/members-area" class="btn btn-primary btn-xl page-scroll">Get Started with portal</a>
             </div>
         </div>
         <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
@@ -86,10 +84,7 @@
                 <div class="treadmill-unit">
                     <?php
         
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "portal";
+require($_SERVER['DOCUMENT_ROOT']. '/portal/common/config/config.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -125,47 +120,13 @@ $conn->close();?>
 </div>            </div>
         </div>
     </section>
-    <section id="two">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="margin-top-0 text-primary">Flexible Layouts</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 text-center">
-                    <div class="feature">
-                        <i class="icon-lg ion-android-laptop wow fadeIn" data-wow-delay=".3s"></i>
-                        <h3>Responsive</h3>
-                        <p class="text-muted">Your site looks good everywhere</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 text-center">
-                    <div class="feature">
-                        <i class="icon-lg ion-social-sass wow fadeInUp" data-wow-delay=".2s"></i>
-                        <h3>Customizable</h3>
-                        <p class="text-muted">Easy to theme and customize with SASS</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 text-center">
-                    <div class="feature">
-                        <i class="icon-lg ion-ios-star-outline wow fadeIn" data-wow-delay=".3s"></i>
-                        <h3>Consistent</h3>
-                        <p class="text-muted">A mature, well-tested, stable codebase</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <section id="three" class="no-padding">
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d">
-                        <img src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d" class="img-responsive" alt="Image 1">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="images/image1.jpg">
+                        <img src="images/image1.jpg" class="img-responsive" alt="Image 1">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -176,8 +137,8 @@ $conn->close();?>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/getrefe/regular/tumblr_nqune4OGHl1slhhf0o1_1280.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/getrefe/regular/tumblr_nqune4OGHl1slhhf0o1_1280.jpg" class="img-responsive" alt="Image 2">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="images/image2.jpg">
+                        <img src="images/image2.jpg" class="img-responsive" alt="Image 2">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -191,8 +152,8 @@ $conn->close();?>
                   <i class="arrow_carrot-up"></i>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1433959352364-9314c5b6eb0b%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3D3b9bc6caa190332e91472b6828a120a4">
-                        <img src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1433959352364-9314c5b6eb0b%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3D3b9bc6caa190332e91472b6828a120a4" class="img-responsive" alt="Image 3">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="images/image3.jpg">
+                        <img src="images/image3.jpg" class="img-responsive" alt="Image 3">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -205,8 +166,8 @@ $conn->close();?>
 
     
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-moto-drawing-illusion-nabeel-1440x960.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-moto-drawing-illusion-nabeel-1440x960.jpg" class="img-responsive" alt="Image 4">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="images/image4.jpg">
+                        <img src="images/image4.jpg" class="img-responsive" alt="Image 4">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -217,8 +178,8 @@ $conn->close();?>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-new-york-crosswalk-nabeel-1440x960.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-new-york-crosswalk-nabeel-1440x960.jpg" class="img-responsive" alt="Image 5">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="images/image5.jpg">
+                        <img src="images/image5.jpg" class="img-responsive" alt="Image 5">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -229,8 +190,8 @@ $conn->close();?>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-clothes-exotic-travel-nabeel-1440x960.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-clothes-exotic-travel-nabeel-1440x960.jpg" class="img-responsive" alt="Image 6">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="images/image6.jpg">
+                        <img src="images/image6.jpg" class="img-responsive" alt="Image 6">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -249,9 +210,9 @@ $conn->close();?>
                 <h2 class="text-center text-primary">Features</h2>
                 <hr>
                 <div class="media wow fadeInRight">
-                    <h3>Simple</h3>
+                    <h3>Discussion Forum</h3>
                     <div class="media-body media-middle">
-                        <p>What could be easier? Get started fast with this landing page starter theme.</p>
+                        <p>Get among some of the popular discussions</p>
                     </div>
                     <div class="media-right">
                         <i class="icon-lg ion-ios-bolt-outline"></i>
@@ -259,44 +220,26 @@ $conn->close();?>
                 </div>
                 <hr>
                 <div class="media wow fadeIn">
-                    <h3>Free</h3>
+                    <h3>Resume Generation</h3>
                     <div class="media-left">
                         <a href="#alertModal" data-toggle="modal" data-target="#alertModal"><i class="icon-lg ion-ios-cloud-download-outline"></i></a>
                     </div>
                     <div class="media-body media-middle">
-                        <p>Yes, please. Grab it for yourself, and make something awesome with this.</p>
+                        <p>Get your resume generated and  online</p>
                     </div>
                 </div>
                 <hr>
                 <div class="media wow fadeInRight">
-                    <h3>Unique</h3>
+                    <h3>Notifications</h3>
                     <div class="media-body media-middle">
-                        <p>Because you don't want your Bootstrap site, to look like a Bootstrap site.</p>
+                        <p>Get Notifications and Updates about various Workshops & Seminars </p>
                     </div>
                     <div class="media-right">
                         <i class="icon-lg ion-ios-snowy"></i>
                     </div>
                 </div>
                 <hr>
-                <div class="media wow fadeIn">
-                    <h3>Popular</h3>
-                    <div class="media-left">
-                        <i class="icon-lg ion-ios-heart-outline"></i>
-                    </div>
-                    <div class="media-body media-middle">
-                        <p>There's good reason why Bootstrap is the most used frontend framework in the world.</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="media wow fadeInRight">
-                    <h3>Tested</h3>
-                    <div class="media-body media-middle">
-                        <p>Bootstrap is matured and well-tested. It's a stable codebase that provides consistency.</p>
-                    </div>
-                    <div class="media-right">
-                        <i class="icon-lg ion-ios-flask-outline"></i>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -304,30 +247,11 @@ $conn->close();?>
         <div class="container text-center">
             <div class="call-to-action">
                 <h2 class="text-primary">Get Started</h2>
-                <a href="http://www.bootstrapzero.com/bootstrap-template/landing-zero" target="ext" class="btn btn-default btn-lg wow flipInX">Free Download</a>
+                <a href="/portal/frontend/web/index.php?r=form/members-area" target="ext" class="btn btn-default btn-lg wow flipInX">Visit Portal</a>
             </div>
             <br>
-            <hr/>
-            <br>
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <div class="row">
-                        <h6 class="wide-space text-center">BOOTSTRAP IS BASED ON THESE STANDARDS</h6>
-                        <div class="col-sm-3 col-xs-6 text-center">
-                            <i class="icon-lg ion-social-html5-outline" title="html 5"></i>
-                        </div>
-                        <div class="col-sm-3 col-xs-6 text-center">
-                            <i class="icon-lg ion-social-sass" title="sass"></i>
-                        </div>
-                        <div class="col-sm-3 col-xs-6 text-center">
-                            <i class="icon-lg ion-social-javascript-outline" title="javascript"></i>
-                        </div>
-                        <div class="col-sm-3 col-xs-6 text-center">
-                            <i class="icon-lg ion-social-css3-outline" title="css 3"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            
         </div>
     </aside>
     <section id="last">
@@ -427,16 +351,16 @@ $conn->close();?>
         <div class="modal-dialog">
         <div class="modal-content">
         	<div class="modal-body">
-        		<h2 class="text-center">Landing Zero Theme</h2>
-        		<h5 class="text-center">
-        		    A free, responsive landing page theme built by BootstrapZero.
-        		</h5>
+        		<h2 class="text-center">About Us</h2>
+        		
         		<p class="text-justify">
-        		    This is a single-page Bootstrap template with a sleek dark/grey color scheme, accent color and smooth scrolling.
-        		    There are vertical content sections with subtle animations that are activated when scrolled into view using the jQuery WOW plugin. There is also a gallery with modals
-        		    that work nicely to showcase your work portfolio. Other features include a contact form, email subscribe form, multi-column footer. Uses Questrial Google Font and Ionicons.
+        		    An alumni portal is an initiative used to help students and alumni to seek various opportunities for progress and development.
+
+                    This portal will serve as a platform for student-alumni interaction to discuss on various matter useful for their future.
+
+                    Students can seek internship, alumni can get interns for their work.
         		</p>
-        		<p class="text-center"><a href="http://www.bootstrapzero.com">Download at BootstrapZero</a></p>
+        		
         		<br/>
         		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
         	</div>
@@ -447,11 +371,11 @@ $conn->close();?>
         <div class="modal-dialog modal-sm">
         <div class="modal-content">
         	<div class="modal-body">
-        		<h2 class="text-center">Nice Job!</h2>
-        		<p class="text-center">You clicked the button, but it doesn't actually go anywhere because this is only a demo.</p>
-        		<p class="text-center"><a href="http://www.bootstrapzero.com">Learn more at BootstrapZero</a></p>
+        		<h3 class="text-center">Your query was submitted successfully</h3>
+        		
+        		 
         		<br/>
-        		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
+        		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK </button>
         	</div>
         </div>
         </div>

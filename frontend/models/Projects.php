@@ -29,8 +29,8 @@ class Projects extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['domain'], 'string', 'max' => 20],
-            [['description'], 'string', 'max' => 100]
+            [['domain','description'],'required'],
+            
         ];
     }
 

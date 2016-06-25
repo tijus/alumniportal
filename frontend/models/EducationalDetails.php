@@ -29,10 +29,8 @@ class EducationalDetails extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['degree', 'stream'], 'required'],
-            [['degree'], 'string', 'max' => 10],
-            [['grade'], 'string', 'max' => 5],
-            [['stream'], 'string', 'max' => 40]
+            [['degree', 'stream', 'grade'], 'required'],
+            
         ];
     }
 

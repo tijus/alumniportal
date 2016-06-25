@@ -10,6 +10,8 @@ use kartik\icons\Icon;
 use kartik\widgets\SideNav;
 use kartik\widgets\Typeahead;
 use frontend\widgets\Notifications;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 Icon::map($this);
 AppAsset::register($this);
 ?>
@@ -66,13 +68,27 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 $data=[];
-$sql = "SELECT * FROM user";
+$sql = "SELECT  user.username, basic_info.*
+        FROM user
+         LEFT JOIN (SELECT *
+      FROM basic_info
+      GROUP BY basic_info_id) basic_info
+ON basic_info.basic_info_id = user.id";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        $data[]=$row["username"];
+        if($row["status"] ==  null)
+        {
+            $data[]=$row["username"];
+        }
+        else
+        {
+        $relationship = "(".$row["status"].")";
+        $data[]=$row["username"]." ".$relationship;
+        }
+
     }
 } else {
     echo "0 results";
@@ -81,45 +97,90 @@ $conn->close();
 
  
 
-                $menuItems[]=['label' => Icon::show('cog', [], Icon::BSG) .'Settings',
+               /* $menuItems[]=['label' => Icon::show('cog', [], Icon::BSG) .'Settings',
                     'items' => [
                  ['label' => 'Edit your profile', 'url' => Yii::$app->request->baseUrl.'/index.php?r=form/index'],
                  '<li class="divider"></li>',
-                 ['label' => Icon::show('log-out', [], Icon::BSG) .'Logout',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']]],];
+                 ['label' => Icon::show('log-out', [], Icon::BSG) .'Discussion',
+                    'url' => ['/discussion'],
+                    'linkOptions' => ['data-method' => 'post']]],];*/
                   $menuItems[] = [
                     'label' => Icon::show('user', [], Icon::BSG) .'Hello  ' . Yii::$app->user->identity->username ,
                     'url' => ['/form/members-area'],
                     'items' => [
-                 ['label' => 'View Profile', 'url' => Yii::$app->request->baseUrl.'/index.php?r=form/view-profile&id='.Yii::$app->user->getId()],
+                    ['label' => 'View Profile', 'url' => Yii::$app->request->baseUrl.'/index.php?r=form/view-profile&id='.Yii::$app->user->getId()],
+                    ['label' => 'Edit your profile', 'url' => Yii::$app->request->baseUrl.'/index.php?r=form/index'],
+                 
+                 ['label' => 'Discussion',
+                    'url' => ['/discussion']],
+                 
                  '<li class="divider"></li>',
                  ['label' => Icon::show('log-out', [], Icon::BSG) .'Logout',
                     'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']],
-            ],
+                    'linkOptions' => ['data-method' => 'post']]],
+            
                 ];
                 /*$menuItemsr[]=['label'=>"Discussion Forum",'url'=>['discussion/index']];
                 $menuItemsr[]=['label'=>"View members detail",'url'=>['admin-panel/index']];
                 $menuItemsr[]=['label'=>"Edit Pages",'url'=>['notifications/index']];*/
 
 ?>
-<div class="col-lg-4" style="margin-top: 10px;">
+<div class="col-lg-8" style="margin-top: 10px;">
+<?php
+echo '<form action ="">';
+?>
+<div class="col-lg-6" >
 <?php
 
+
+/*echo Typeahead::widget([
+    'name' => 'state_4', 
+    'options' => ['placeholder' => 'Filter as you type ...'],
+    'dataset' => [
+        [
+            'prefetch' => json_encode($data),
+            'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('value')",
+            'display' => 'value',
+            'templates' => [
+                'notFound' => '<div class="text-danger" style="padding:0 8px">Unable to find repositories for selected query.</div>',
+                /*'suggestion' => new JsExpression("Handlebars.compile('{$template}')")*/
+   /*         ]
+        ]
+    ]
+]);*/
+
+
+
                 echo Typeahead::widget([
-    'name' =>'test',  
+    'name' =>'id',  
     'attribute' => 'state_4',
     'options' => ['placeholder' => 'Find Friends...'],
     'pluginOptions' => ['highlight'=>true],
     'dataset' => [
         [
             'local' => $data,
-            'limit' => 10
+            'limit' => 10,
+            'remote' => Url::to(['site/index'])  ,                
+            
+            'templates' => [
+                'notFound' => '<div class="text-danger" style="padding:0 8px">Unable to find Friends.</div>',
+
+                ]
+
         ]
     ]
 ]);
                 
+                echo '<input type="hidden" value="site/check" name="r">';
+   
+                ?>
+                
+                </div>
+                <?php
+   //             echo "<br>";    
+
+                echo '<button class="btn btn-info" style="visibility:hidden" type="submit"><span class="glyphicon glyphicon-search"></span></button>';
+                echo '</form>';
                 ?>
                 </div>
                 <?php
@@ -174,7 +235,9 @@ $conn->close();
        {
            ?>
            <div class="container">
-            <div class="col-lg-2"></div>
+            <div class="col-lg-2">
+                
+            </div>
             <div class="col-lg-8">
                 <?= Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -185,7 +248,7 @@ $conn->close();
             </div>
             <div class="col-lg-2">
                 
-                </div>
+            </div>
         </div>
     </div>
         

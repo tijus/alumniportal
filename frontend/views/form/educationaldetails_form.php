@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
     
-    <?= $form->field($model, 'degree')->dropDownList([' '=>'Select','FE'=>'First Year Engineering','SE'=>'Second Year Engineering','TE'=>'Third Year Engineering','BE'=>'Fourth Year Engineering','O'=>'Others']); ?>
+    <?= $form->field($model, 'degree')->dropDownList([' '=>'Select','First Year Engineering'=>'First Year Engineering','Second Year Engineering'=>'Second Year Engineering','Third Year Engineering'=>'Third Year Engineering','Fourth Year Engineering'=>'Fourth Year Engineering','O'=>'Others']); ?>
 
     <?= $form->field($model, 'grade')->textInput(['maxlength' => 5]) ?>
 
-    <?= $form->field($model, 'stream')->dropDownList([' '=>'Select','CS'=>'Computer Engineering','ETX'=>'Electronics','EXTC'=>'Electronics and Telecommunication','IT'=>'Information Technology']); ?>
+    <?= $form->field($model, 'stream')->dropDownList([' '=>'Select','Computer Engineering'=>'Computer Engineering','Electronics'=>'Electronics','Electronics and Telecommunication'=>'Electronics and Telecommunication','Information Technology'=>'Information Technology']); ?>
     
 
 
@@ -26,7 +26,9 @@ use yii\widgets\ActiveForm;
         {
         if($model->isNewRecord)
         {
+         echo "&nbsp;&nbsp;&nbsp;";
          echo Html::a('Skip', ['form/projects']); 
+         echo "&nbsp;&nbsp;&nbsp;";
          echo Html::a('Skip All', ['form/members-area']);
         }
         else

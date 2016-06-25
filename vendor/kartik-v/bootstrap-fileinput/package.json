@@ -1,6 +1,6 @@
 {
     "name": "bootstrap-fileinput",
-    "version": "4.3.0",
+    "version": "4.3.2",
     "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
     "authors": [
         "Kartik Visweswaran <kartikv2@gmail.com>"
@@ -26,7 +26,8 @@
         "progress",
         "gallery"
     ],
-    "dependencies": {
+    "main": "./js/fileinput.js",
+    "peerDependencies": {
         "jquery": ">= 1.9.0",
         "bootstrap": "~3"
     },

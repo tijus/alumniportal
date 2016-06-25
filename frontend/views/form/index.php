@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 use yii\bootstrap\Button;
 use yii\helpers\Url;
 
+$this->title = 'Edit Profile | '.Yii::$app->user->identity->username ;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Boat */
@@ -39,7 +40,6 @@ use yii\helpers\Url;
             'batch',
             'website',
             'hobbies',
-            'marital_status',
             'status',
         ],
     ]) ?>
@@ -73,8 +73,6 @@ use yii\helpers\Url;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            
-            'year',
             'domain',
             'description',
         ],
@@ -111,7 +109,7 @@ use yii\helpers\Url;
             'type',
             'company_name',
             'job_title',
-            'start_date',
+            
          ],
     ]) ?>
     <div class="col-2" align="right">

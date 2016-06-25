@@ -18,11 +18,12 @@ use Yii;
  * @property string $permanent_address
  * @property string $website
  * @property string $hobbies
- * @property string $marital_status
+ 
  * @property integer $status
  * @property integer $batch
  * @property string $first_login_date
  * @property string $last_profile_update_date
+ 
  */
 class BasicInfo extends \yii\db\ActiveRecord
 {
@@ -41,14 +42,15 @@ class BasicInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['first_name','last_name','DOB', 'gender', 'country', 'mobile_no', 'corr_address', 'permanent_address', 'marital_status', 'status','batch', 'first_login_date', 'last_profile_update_date'], 'required'],
+            [['first_name','last_name','DOB', 'gender', 'country', 'mobile_no', 'corr_address', 'permanent_address','status','batch', 'first_login_date', 'last_profile_update_date'], 'required','message'=>'This field can not be blank'],
             [['mobile_no'], 'integer'],
             [['first_login_date', 'last_profile_update_date'], 'safe'],
             [['DOB'], 'string', 'max' => 15],
-            [['gender', 'marital_status','status'], 'string', 'max'=>100 ],
+            [['gender', 'status'], 'string', 'max'=>100 ],
             [['country'], 'string'],
-            [['file'],'file'],
-            [['profile_pic_path'],'string','max'=>200],
+           // [['file'],'file'],
+            //[['file'],'required','message'=>'Please upload your photo'],
+           // [['profile_pic_path'],'string','max'=>200],
             [['batch'],'integer', 'message'=>'Enter your batch or your passing year'],
             [['first_name','last_name'],'string','max'=>20],
             [['corr_address', 'permanent_address'], 'string', 'max' => 100],
@@ -76,11 +78,10 @@ class BasicInfo extends \yii\db\ActiveRecord
             'website' => 'Website',
             'hobbies' => 'Hobbies',
             'batch'=>'Batch',
-            'marital_status' => 'Marital Status',
             'status' => ' Relationship with KJSIEIT',
             'first_login_date' => 'First Login Date',
             'last_profile_update_date' => 'Last Profile Update Date',
-            'file'=>'Upload your profile picture',
+            //'file'=>'Upload your profile picture',
         ];
     }
 }

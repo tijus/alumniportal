@@ -18,7 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'job_title')->textInput(['maxlength' => 25]) ?>
 
-    <?= $form->field($model, 'start_date')->textInput(['maxlength' => 10]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Submit' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

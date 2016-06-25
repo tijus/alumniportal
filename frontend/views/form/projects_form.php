@@ -26,8 +26,10 @@ use yii\widgets\ActiveForm;
         <?php
         if($model->isNewRecord)
         {
+        echo "&nbsp;&nbsp;&nbsp;";
         echo Html::a('Skip', ['form/technical-proficiency']);
-         echo Html::a('Skip All', ['form/memebers-area']);
+        echo "&nbsp;&nbsp;&nbsp;";
+         echo Html::a('Skip All', ['form/members-area']);
         }
         else
         {}

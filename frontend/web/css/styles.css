@@ -24,6 +24,10 @@ body {
     background-color:#fff; /* change if the mask should be a color other than white */
     z-index:99; /* makes sure it stays on top */
 }
+.imgbtnadjust
+{
+    margin:10% 0% 0% -5%;
+}
 
 .vdivide {
   background: #e0e0e0;
@@ -78,8 +82,35 @@ hr {
     margin-bottom: 15px;
 }
 
+
 hr.light {
     border-color: #ccc;
+}
+div.uploadBtn {
+
+    width: 115px;
+    height: 40px;
+    background: url('images/upload.png');
+    position: relative;
+    background-size: 100%;
+    cursor: pointer;
+}
+input[type='file']{
+
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+}
+.imageUploadedOrNot{
+    display: none;
+}
+
+img#blankImg
+{
+    max-width: 100%;
+    max-height: 100%;
 }
 
 a {
@@ -142,9 +173,7 @@ p {
     color: rgb(51, 122, 183);;
 }
 
-.modal-content {
-    background-color: #1d1d1d;
-}
+
 
 section {
     padding: 70px 0;
