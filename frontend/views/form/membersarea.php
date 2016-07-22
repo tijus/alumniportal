@@ -18,19 +18,19 @@ $this->title = 'Dashboard | '.Yii::$app->user->identity->username ;
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="/portal/frontend/web/slider_images/slider1.jpg">
+      <img src="/portal/frontend/web/slider_images/slider_image1.jpg">
     </div>
 
     <div class="item">
-      <img src="/portal/frontend/web/slider_images/slider2.jpg">
+      <img src="/portal/frontend/web/slider_images/slider_image2.jpg">
     </div>
 
     <div class="item">
-      <img src="/portal/frontend/web/slider_images/slider3.jpg">
+      <img src="/portal/frontend/web/slider_images/slider_image3.jpg">
     </div>
 
     <div class="item">
-      <img src="/portal/frontend/web/slider_images/slider4.jpg">
+      <img src="/portal/frontend/web/slider_images/slider_image4.jpg">
     </div>
 
     

@@ -45,10 +45,38 @@ if ($result->num_rows > 0) {
         $project_domain = $row["domain"];
         $project_desc = $row["description"];
         $technical_proficiency = $row["skill"];
+       
+       
+
     }
 } else {
     echo "0 results";
 }
+
+$sql1="Select * from resume where resume_id='".$_GET["id"]."'";
+$result1 = $conn->query($sql1);
+
+if ($result1->num_rows > 0) {
+    // output data of each row
+    while($row1 = $result1->fetch_assoc()) {
+         $languages = $row1["languagesknown"];
+        $career = $row1["carreer_obj"];
+        $sem1 = $row1["sem1"];
+        $sem2 = $row1["sem2"];
+        $sem3 = $row1["sem3"];
+        $sem4 = $row1["sem4"];
+        $sem5 = $row1["sem5"];
+        $sem6 = $row1["sem6"];
+        $sem7 = $row1["sem7"];
+        $sem8 = $row1["sem8"];
+        $awards = $row1["awards"];
+    }
+}
+    else
+    {
+        echo "Please enter education details";
+    }
+
 
 
 class PDF extends FPDF
@@ -144,14 +172,14 @@ $pdf->Cell(0,5,$address,0,0,'L');
     $pdf->Ln(7);
 $pdf->SetFillColor(200,220,255);    
 $pdf->Cell(0,8,'Career Objective:',1,1,'L',true);
-$pdf->Write(5,'Seeking for a challenging position as a professional, where in given chance of proving my skills.');
+$pdf->Write(5,$career.'.');
 // Line break
 $pdf->Ln(8);
 $pdf->Cell(0,8,'Education:',1,1,'L',true);
 $pdf->Ln(2);
 $sem = array('Semester 1','Semester 2','Semester 3','Semester 4','Semester 5','Semester 6','Semester 7','Semester 8');
 $data = array(
-    array('11','11','11','11','11','11','11','11'),
+    array($sem1,$sem2,$sem3,$sem4,$sem5,$sem6,$sem7,$sem8),
     );
 //$data = $pdf->LoadData('countries.txt');    
 $pdf->SemTable($sem,$data);
@@ -192,9 +220,8 @@ $pdf->Cell(0,10,$technical_proficiency,0,1,'L');
 //$pdf->Cell(0,10,'Languages: Java, Basics of PYTHON, C. ',0,1,'L');
 $pdf->Ln(2);
 $pdf->Cell(0,8,'Award(s)/ Achievement(s) / Post(s) of Responsibilities:',1,1,'L',true);
-$pdf->Cell(0,10,'Students council Joint technical secretary',0,1,'L');
-$pdf->Cell(0,10,'Csi Joint technical head',0,1,'L');
-$pdf->Cell(0,10,'Alumni portal ',0,1,'L');
+$pdf->Cell(0,10,$awards,0,1,'L');
+
 
 // Line break
     $pdf->Ln(7);

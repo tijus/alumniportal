@@ -38,6 +38,8 @@ AppAsset::register($this);
             ]);
             
             if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Home' , 'url' => ['/site/home']];
+                $menuItems[] = ['label' => 'Gallery' , 'url' => ['/site/gallery']];
                     $menuItems[] = ['label' =>Icon::show('user', [], Icon::BSG) . 'Signup' , 'url' => ['/site/signup']];
                 $menuItems[] = ['label' =>Icon::show('log-in', [], Icon::BSG) . 'Login', 'url' => ['/site/login']];
         
@@ -53,17 +55,7 @@ AppAsset::register($this);
             }
             else {
 
- require($_SERVER['DOCUMENT_ROOT']. '/portal/common/config/config.php');
-/*
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "portal";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);*/
-// Check connection
-                
+ require($_SERVER['DOCUMENT_ROOT']. '/portal/common/config/config.php');               
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
@@ -95,15 +87,10 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 
- 
+                    
 
-               /* $menuItems[]=['label' => Icon::show('cog', [], Icon::BSG) .'Settings',
-                    'items' => [
-                 ['label' => 'Edit your profile', 'url' => Yii::$app->request->baseUrl.'/index.php?r=form/index'],
-                 '<li class="divider"></li>',
-                 ['label' => Icon::show('log-out', [], Icon::BSG) .'Discussion',
-                    'url' => ['/discussion'],
-                    'linkOptions' => ['data-method' => 'post']]],];*/
+                   $menuItems[] = ['label' => 'Home' , 'url' => ['/site/home']];
+                   $menuItems[] = ['label' => 'Gallery' , 'url' => ['/site/gallery']];
                   $menuItems[] = [
                     'label' => Icon::show('user', [], Icon::BSG) .'Hello  ' . Yii::$app->user->identity->username ,
                     'url' => ['/form/members-area'],
@@ -120,9 +107,7 @@ $conn->close();
                     'linkOptions' => ['data-method' => 'post']]],
             
                 ];
-                /*$menuItemsr[]=['label'=>"Discussion Forum",'url'=>['discussion/index']];
-                $menuItemsr[]=['label'=>"View members detail",'url'=>['admin-panel/index']];
-                $menuItemsr[]=['label'=>"Edit Pages",'url'=>['notifications/index']];*/
+               
 
 ?>
 <div class="col-lg-8" style="margin-top: 10px;">
@@ -133,21 +118,7 @@ echo '<form action ="">';
 <?php
 
 
-/*echo Typeahead::widget([
-    'name' => 'state_4', 
-    'options' => ['placeholder' => 'Filter as you type ...'],
-    'dataset' => [
-        [
-            'prefetch' => json_encode($data),
-            'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('value')",
-            'display' => 'value',
-            'templates' => [
-                'notFound' => '<div class="text-danger" style="padding:0 8px">Unable to find repositories for selected query.</div>',
-                /*'suggestion' => new JsExpression("Handlebars.compile('{$template}')")*/
-   /*         ]
-        ]
-    ]
-]);*/
+
 
 
 
@@ -177,7 +148,7 @@ echo '<form action ="">';
                 
                 </div>
                 <?php
-   //             echo "<br>";    
+   
 
                 echo '<button class="btn btn-info" style="visibility:hidden" type="submit"><span class="glyphicon glyphicon-search"></span></button>';
                 echo '</form>';
@@ -189,44 +160,11 @@ echo '<form action ="">';
                 'items' => $menuItems,
                 'encodeLabels'=>FALSE
             ]);
-              /*  echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-left'],
-                'items' => $menuItemsr,
-                'encodeLabels'=>FALSE
-            ]);
-*/
+
                 
             } 
-            
-            /*else {
-                
-                $menuItems[] = [
-                    'label' => Icon::show('user', [], Icon::BSG) .'Hello  ' . Yii::$app->user->identity->username ,
-                    'url' => ['/form/members-area'],
-                ];
-               
-                $menuItems[]=['label' => Icon::show('cog', [], Icon::BSG) .'Account Settings',
-                    'url' => ['/form/index'],];
-                 $menuItems[] = [
-                    'label' => Icon::show('log-out', [], Icon::BSG) .'Logout',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post'],
-                ];
-                $menuItemsr[]=['label'=>"Discussion Forum",'url'=>['discussion/index']];
-                $menuItemsr[]=['label'=>"View other members",'url'=>['other-members/members']];
-
-                echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
-                'encodeLabels'=>FALSE
-            ]);
-                echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-left'],
-                'items' => $menuItemsr,
-                'encodeLabels'=>FALSE
-            ]);
-                
-            }*/
+           
+        
            
             NavBar::end();
         ?>
@@ -313,8 +251,43 @@ echo '<form action ="">';
            <div class="col-lg-1"></div><div style="border-right: 1px solid white; "></div>
             <div class="col-lg-3">
                 
-                <h2>Notifications</h2>
-                <table><hr></hr></table>    
+ <h2>News</h2>
+    <hr>
+      <marquee direction="up" scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();">
+                    <?php
+        
+require($_SERVER['DOCUMENT_ROOT']. '/portal/common/config/config.php');
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+        $sql = "SELECT * FROM Notifications";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+//        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+        ?>
+    
+                   <a href="<?php echo 'http://'.$row['Description']?>"> <p><?php echo $row["Title"];?></p></a>
+                    
+               
+        
+                <?php
+                }
+}else {
+    echo "No Notifications";
+}
+$conn->close();?>
+</marquee>
+      
+                   <hr>
+
                 <h4>Complete your profile</h4>                
                 <div class="progress">
   <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
@@ -323,9 +296,7 @@ echo '<form action ="">';
   </div>
 </div>
                     <br>
-    <h2>News</h2>
-    <table><hr></hr></table>    
-    <p>Currently no news and updates</p>
+   
 </div>
 
             </div>

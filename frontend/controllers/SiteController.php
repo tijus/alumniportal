@@ -135,9 +135,23 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionHome()
+    {
+        return $this->render('home');
+    }
+
     public function actionCheck()
     {
         return $this->render('check');
+    }
+    public function actionGallery()
+    {
+        return $this->render('gallery');
+    }
+
+    public function actionCommunities()
+    {
+        return $this->render('communities');
     }
 
     public function actionSignup()

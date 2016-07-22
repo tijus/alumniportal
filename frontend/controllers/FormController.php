@@ -15,6 +15,7 @@ use frontend\models\ProjectsSearch;
 use frontend\models\TechnicalProficiencySearch;
 use frontend\models\WorkExperienceSearch;
 use frontend\models\ProfilePics;
+use frontend\models\Resume;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -293,6 +294,42 @@ ON work_experience.work_exp_id = user.id where user.id=".Yii::$app->user->getId(
                 'model' => $model,
             ]);
     
+        }
+    }
+
+    public function actionResume()
+    {
+
+        $model = new Resume();
+         $model->resume_id=Yii::$app->user->getId();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect('/portal/frontend/resume/index.php?id='.Yii::$app->user->getId(),302);
+        } else {
+            return $this->render('resume', [
+                'model' => $model,
+            ]);
+    
+        }   
+    }
+    public function actionResumeUpdate($id)
+    {
+        $model = $this->findModelR($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect('/portal/frontend/resume/index.php?id='.Yii::$app->user->getId());
+        } else {
+            return $this->render('resume-update', [
+                'model' => $model,
+            ]);
+        }
+    }
+     protected function findModelR($id)
+    {
+        if (($model = Resume::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
     public function actionProfilePics()

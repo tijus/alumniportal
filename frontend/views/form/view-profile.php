@@ -1,5 +1,10 @@
 
             <?php
+
+            use yii\bootstrap\Modal;
+            use yii\helpers\Html;
+            use yii\helpers\Url;
+            use yii\widgets\ActiveForm;
             $this->title = 'View Profile';   
             ?>
 
@@ -8,7 +13,7 @@
 
             <hr>
             <?php
-            //require("\edexworld\config.php");
+            
             
             $document_root=$_SERVER['DOCUMENT_ROOT'];
             include($document_root."/portal/common/config/config.php");
@@ -91,7 +96,17 @@
                                 }
                                 else
                                 {
-                                	
+                                	if(Yii::$app->user->getId()!=$_GET["id"])
+                                  {
+                                    print '<tr>
+                        <td>
+                                   <img name="'.$row["profile_pic_path"].'" src="/portal/frontend/web/uploads/'.$row["profile_pic_path"].'" class="img-thumbnail"   height="160" width="160"/>
+                           
+                        </td>
+                      </tr>';
+                                  }
+                                else
+                                {
                                        print '<tr>
                         <td>
                                    <img name="'.$row["profile_pic_path"].'" src="/portal/frontend/web/uploads/'.$row["profile_pic_path"].'" class="img-thumbnail"   height="160" width="160"/>
@@ -140,6 +155,7 @@
                       
                     </div>';
                       echo '</div>';
+                    }
 
 
                                 }
@@ -197,7 +213,10 @@
                                  
                                     <hr style="margin-top:10px; margin-bottom:10px;">
                                     <tr>
-                                        <a href="/portal/frontend/resume/index.php?id=<?php echo Yii::$app->user->getId();?>" class="btn btn-primary"><span class="glyphicon glyphicon-cog"></span> Generate your Resume</a>
+                                 
+                                 
+                                    <!-- <a href="/portal/frontend/resume/index.php?id=<?php echo Yii::$app->user->getId();?>" class="btn btn-primary"><span class="glyphicon glyphicon-cog"></span> Generate your Resume</a>   -->
+                                       <a href="/portal/frontend/web/index.php?r=resume-handler/index" class="btn btn-primary"><span class="glyphicon glyphicon-cog"></span> Generate your Resume</a>  
 
                                     </tr>
                                     <?php
